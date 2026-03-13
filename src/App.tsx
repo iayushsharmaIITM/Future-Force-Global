@@ -260,24 +260,40 @@ export default function App() {
               viewport={{ once: true }}
               className="border border-white/10 p-8 md:p-12 bg-black/50 backdrop-blur-sm"
             >
-              <form className="space-y-6 font-mono" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6 font-mono" onSubmit={(e) => {
+                e.preventDefault();
+                const formData = new FormData(e.currentTarget);
+                const name = formData.get('name');
+                const company = formData.get('company');
+                const type = formData.get('type');
+                const message = formData.get('message');
+                
+                const subject = `New Inquiry: ${type} from ${name} (${company})`;
+                const body = `Name: ${name}\nCompany: ${company}\nInquiry Type: ${type}\n\nMessage:\n${message}`;
+                
+                window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=info@ffgg.co.in&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, '_blank', 'noopener,noreferrer');
+              }}>
                 <div>
                   <label className="block text-xs text-white/50 uppercase tracking-widest mb-2">Name</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="John Doe" />
+                  <input name="name" required type="text" className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="John Doe" />
                 </div>
                 <div>
                   <label className="block text-xs text-white/50 uppercase tracking-widest mb-2">Company</label>
-                  <input type="text" className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="Acme Corp" />
+                  <input name="company" required type="text" className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors" placeholder="Acme Corp" />
                 </div>
                 <div>
                   <label className="block text-xs text-white/50 uppercase tracking-widest mb-2">Inquiry Type</label>
-                  <select className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors text-white/80 [&>option]:bg-black">
+                  <select name="type" className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors text-white/80 [&>option]:bg-black">
                     <option>IT Hiring</option>
                     <option>Non-IT Hiring</option>
                     <option>General Inquiry</option>
                   </select>
                 </div>
-                <button className="w-full bg-white text-black py-4 font-bold uppercase tracking-wider hover:bg-[#D4AF37] transition-colors mt-8">
+                <div>
+                  <label className="block text-xs text-white/50 uppercase tracking-widest mb-2">Message</label>
+                  <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-white/20 pb-2 focus:outline-none focus:border-[#D4AF37] transition-colors resize-none" placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" className="w-full bg-white text-black py-4 font-bold uppercase tracking-wider hover:bg-[#D4AF37] transition-colors mt-8">
                   Initiate Contact
                 </button>
               </form>
