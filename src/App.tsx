@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import PixelBackground from './components/PixelBackground';
-import { ArrowRight, Briefcase, ChevronRight, Code2, Globe2, Phone } from 'lucide-react';
+import AnimatedGlobe from './components/AnimatedGlobe';
+import { ArrowRight, Briefcase, ChevronRight, Code2, Globe2, Phone, Mail } from 'lucide-react';
 
 export default function App() {
   return (
@@ -19,9 +20,9 @@ export default function App() {
             <a href="#industries" className="hover:text-white transition-colors">INDUSTRIES</a>
             <a href="#contact" className="hover:text-white transition-colors">CONTACT</a>
           </div>
-          <a href="tel:+919667705580" className="hidden md:flex items-center gap-2 border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all font-mono text-sm">
-            <Phone size={14} />
-            <span>9667705580</span>
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@ffgg.co.in" target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition-all font-mono text-sm">
+            <Mail size={14} />
+            <span>info@ffgg.co.in</span>
           </a>
         </div>
       </nav>
@@ -64,7 +65,7 @@ export default function App() {
       </main>
 
       {/* Expertise Section */}
-      <section id="expertise" className="relative z-10 py-32 px-6 bg-black">
+      <section id="expertise" className="relative z-10 py-32 px-6 bg-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0 }}
@@ -87,7 +88,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="border border-white/10 p-8 md:p-12 hover:border-[#D4AF37]/50 transition-colors group relative overflow-hidden bg-[#050505]"
+              className="border border-white/10 p-8 md:p-12 hover:border-[#D4AF37]/50 transition-colors group relative overflow-hidden bg-[#050505]/80 backdrop-blur-sm"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/10 blur-3xl rounded-full group-hover:bg-[#D4AF37]/20 transition-colors"></div>
               <Code2 size={48} className="text-[#D4AF37] mb-8" strokeWidth={1} />
@@ -117,7 +118,7 @@ export default function App() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="border border-white/10 p-8 md:p-12 hover:border-[#D4AF37]/50 transition-colors group relative overflow-hidden bg-[#050505]"
+              className="border border-white/10 p-8 md:p-12 hover:border-[#D4AF37]/50 transition-colors group relative overflow-hidden bg-[#050505]/80 backdrop-blur-sm"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 blur-3xl rounded-full group-hover:bg-white/10 transition-colors"></div>
               <Briefcase size={48} className="text-white mb-8" strokeWidth={1} />
@@ -160,6 +161,61 @@ export default function App() {
         </motion.div>
       </div>
 
+      {/* Global Reach Section */}
+      <section className="relative z-10 pt-32 pb-48 md:pb-64 px-6 bg-transparent overflow-hidden min-h-screen flex items-center justify-center">
+        {/* Globe Background */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-80 pointer-events-none">
+          <div className="w-full max-w-[1000px] aspect-square translate-y-8">
+            <AnimatedGlobe />
+          </div>
+          {/* Radial gradient to fade out the edges of the globe into the background */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,#050505_80%)]"></div>
+          {/* Top and Bottom linear fades to ensure smooth transition to borders */}
+          <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#050505] to-transparent"></div>
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#050505] to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center"
+          >
+            <div className="font-mono text-[#D4AF37] mb-6 flex items-center gap-4 text-sm">
+              <span className="w-8 h-[1px] bg-[#D4AF37]"></span>
+              WORLDWIDE NETWORK
+              <span className="w-8 h-[1px] bg-[#D4AF37]"></span>
+            </div>
+            <h2 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 text-glow">
+              GLOBAL <span className="text-[#D4AF37]">PRESENCE</span>
+            </h2>
+            <p className="text-xl text-white/80 mb-16 max-w-2xl mx-auto font-light leading-relaxed">
+              Connecting elite talent with visionary companies across borders. Our network spans major tech hubs and emerging markets worldwide.
+            </p>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 font-mono w-full">
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">50+</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest">Countries</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">24/7</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest">Operations</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">10k+</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest">Placements</div>
+              </div>
+              <div>
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">15+</div>
+                <div className="text-xs text-white/50 uppercase tracking-widest">Industries</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="relative z-10 py-32 px-6">
         <div className="max-w-7xl mx-auto">
@@ -177,13 +233,13 @@ export default function App() {
               </p>
               
               <div className="space-y-8 font-mono">
-                <a href="tel:+919667705580" className="flex items-center gap-6 group w-fit">
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@ffgg.co.in" target="_blank" rel="noopener noreferrer" className="flex items-center gap-6 group w-fit">
                   <div className="w-16 h-16 border border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-black transition-colors">
-                    <Phone size={24} />
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <div className="text-sm text-white/50 mb-1 uppercase tracking-widest">Direct Line</div>
-                    <div className="text-2xl font-bold">+91 9667705580</div>
+                    <div className="text-sm text-white/50 mb-1 uppercase tracking-widest">Email Us</div>
+                    <div className="text-2xl font-bold">info@ffgg.co.in</div>
                   </div>
                 </a>
                 <div className="flex items-center gap-6 group">
@@ -231,8 +287,21 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="relative z-10 border-t border-white/10 py-8 px-6 bg-black">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-white/40 uppercase tracking-widest">
+      <footer className="relative z-10 border-t border-white/10 py-12 px-6 bg-black/50 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 mb-8 font-mono text-sm text-white/60">
+          <div>
+            <div className="text-white font-bold mb-4 uppercase tracking-widest">Contact</div>
+            <a href="tel:+919667705580" className="hover:text-white transition-colors flex items-center gap-2 w-fit">
+              <Phone size={14} />
+              +91 9667705580
+            </a>
+          </div>
+          <div className="md:text-right">
+            <div className="text-white font-bold mb-4 uppercase tracking-widest">Headquarters</div>
+            <div>Global Operations</div>
+          </div>
+        </div>
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-white/40 uppercase tracking-widest border-t border-white/10 pt-8">
           <div>© {new Date().getFullYear()} Future Force Global Group. All rights reserved.</div>
           <div className="flex gap-8">
             <a href="#" className="hover:text-white transition-colors">Privacy</a>
